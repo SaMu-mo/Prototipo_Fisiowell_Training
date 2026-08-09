@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-function Icon({ name }) {
+export function Icon({ name }) {
   const P = { fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
   if (name === "pacientes") return <svg viewBox="0 0 24 24" {...P}><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" /><circle cx="10" cy="7" r="4" /><path d="M21 21v-2a4 4 0 0 0-3-3.9" /></svg>;
   if (name === "agenda") return <svg viewBox="0 0 24 24" {...P}><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></svg>;
@@ -12,7 +12,7 @@ function Icon({ name }) {
   return null;
 }
 
-const NAV = {
+export const NAV = {
   ADMIN: [
     { to: "/pacientes", label: "Pacientes", icon: "pacientes" },
     { to: "/agenda", label: "Agenda", icon: "agenda" },
@@ -40,14 +40,10 @@ export default function BottomNav() {
     <nav className="nav">
       {items.map((it) => (
         <NavLink key={it.to} to={it.to} className={({ isActive }) => (isActive ? "active" : "")}>
-          <Icon name={it.icon} />
-          {it.label}
+          <Icon name={it.icon} />{it.label}
         </NavLink>
       ))}
-      <button className="salir-tab" onClick={salir} title="Cerrar sesión">
-        <Icon name="salir" />
-        Salir
-      </button>
+      <button className="salir-tab" onClick={salir} title="Cerrar sesión"><Icon name="salir" />Salir</button>
     </nav>
   );
 }

@@ -109,3 +109,49 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xm
 .nav .salir-tab:hover{color:var(--bad)}
 .nav a,.nav .salir-tab{min-width:0}
 .nav a{font-size:10px}
+
+/* ===== En móvil, .app no afecta el layout (se centra el "teléfono") ===== */
+.app{display:contents}
+.sidenav{display:none}
+
+/* ============================================================
+   ESCRITORIO: usa toda la pantalla, con menú lateral
+   ============================================================ */
+@media (min-width:900px){
+  .stage{padding:0;align-items:stretch;justify-content:flex-start}
+  .app{display:flex;width:100%;min-height:100vh}
+
+  /* menú lateral */
+  .sidenav{display:flex;flex-direction:column;width:250px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--line);padding:18px 14px;height:100vh;position:sticky;top:0}
+  .side-brand{display:flex;align-items:center;gap:12px;padding:6px 8px 16px;border-bottom:1px solid var(--line);margin-bottom:12px}
+  .side-brand img{width:44px;height:44px;border-radius:12px;object-fit:contain;background:#fff;border:1px solid var(--line)}
+  .sb-name{font-family:'Poppins';font-weight:700;font-size:17px;color:var(--brand-deep);line-height:1}
+  .sb-sub{font-size:11px;color:var(--accent-deep);letter-spacing:2px;text-transform:uppercase}
+  .side-items{display:flex;flex-direction:column;gap:4px}
+  .side-link{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:11px;color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:14px}
+  .side-link svg{width:20px;height:20px}
+  .side-link:hover{background:var(--surface-2)}
+  .side-link.active{background:var(--brand-soft);color:var(--brand-deep)}
+  .side-foot{margin-top:auto;border-top:1px solid var(--line);padding-top:12px}
+  .side-user{font-size:12px;color:var(--muted);padding:0 12px 8px}
+  .side-logout{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;border:none;background:none;border-radius:11px;color:var(--ink-soft);font-family:'Inter';font-weight:600;font-size:14px;cursor:pointer}
+  .side-logout svg{width:20px;height:20px}
+  .side-logout:hover{background:var(--bad-soft);color:var(--bad)}
+
+  /* área de contenido: ocupa el resto de la pantalla */
+  .device{flex:1;width:auto;max-width:none;height:100vh;max-height:100vh;border-radius:0;box-shadow:none;background:var(--surface-2)}
+  .nav{display:none}                 /* la barra de abajo se oculta en escritorio */
+  .hdr{border-radius:0}
+  .hdr .row,.hdr .hero-metrics,.hdr .hi,.hdr .name,.hdr .back{max-width:1100px;margin-left:auto;margin-right:auto}
+  .hdr{padding-left:0;padding-right:0}
+  .hdr>*{padding-left:40px;padding-right:40px}
+  .hero-metrics{max-width:640px}
+  .scroll{padding:26px 40px 40px}
+  .scroll>*{max-width:1020px;margin-left:auto;margin-right:auto}
+  /* el botón "+" del encabezado se mantiene; login sigue a pantalla completa */
+}
+
+/* Pantallas muy anchas: no estirar demasiado el contenido */
+@media (min-width:1300px){
+  .scroll>*{max-width:1100px}
+}

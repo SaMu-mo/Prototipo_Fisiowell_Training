@@ -7,6 +7,7 @@ import Caja from "./pages/Caja";
 import Contabilidad from "./pages/Contabilidad";
 import Gestion from "./pages/Gestion";
 import BottomNav from "./components/BottomNav";
+import SideNav from "./components/SideNav";
 
 function Privado({ children }) {
   const { usuario } = useAuth();
@@ -18,7 +19,12 @@ function Rol({ roles, children }) {
   return roles.includes(usuario.rol) ? children : <Navigate to="/" replace />;
 }
 function Shell({ children }) {
-  return <div className="device"><div className="screen active">{children}</div><BottomNav /></div>;
+  return (
+    <div className="app">
+      <SideNav />
+      <div className="device"><div className="screen active">{children}</div><BottomNav /></div>
+    </div>
+  );
 }
 function Inicio() {
   const { usuario } = useAuth();
